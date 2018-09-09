@@ -1,7 +1,8 @@
 module PgnParserTypes where
 
-import           Data.Char
-import           Data.Matrix
+import           Data.Char   (chr, ord)
+import           Data.Map
+import           Data.Matrix (Matrix, matrix, setElem)
 
 data PieceType
   = King
@@ -98,3 +99,10 @@ startBoard =
       setElem (cellWithPiece 8 8 (Piece Black Rook)) (8, 8) $
       ---
       emptyMatrix
+
+type MetaInfo = Map String String
+
+data ChessGame =
+  ChessGame MetaInfo
+            [Board]
+  deriving (Eq, Show)
